@@ -1,165 +1,457 @@
-// Lightweight particle-network background for the hero.
-// Pure canvas, no external library. Skips animation entirely under
-// prefers-reduced-motion, and pauses while off-screen / tab hidden.
 (function () {
-  function init() {
+  'use strict';
+
+  function initParticles() {
     var canvas = document.getElementById('particles-canvas');
+
     if (!canvas || !canvas.getContext) {
-      console.warn('[particles] #particles-canvas not found — check the id on your <canvas> matches this script.');
       return;
     }
 
-    var header = canvas.closest('header');
-    if (!header) {
-      console.warn('[particles] canvas is not inside a <header> element.');
-      return;
-    }
-
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var ctx = canvas.getContext('2d');
-    var particles = [];
-    var width = 0, height = 0, dpr = 1;
-    var running = false;
-    var rafId = null;
 
-    var DENSITY = 9000;
-    var MAX_PARTICLES = 70;
-    var MIN_PARTICLES = 24;
-    var LINK_DIST = 130;
+    if (!ctx) {
+      return;
+    }
+
+    var motionQuery = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    );
+
+    var particles = [];
+
+    var width = 0;
+    var height = 0;
+    var dpr = 1;
+
+    var animationFrame = 0;
+    var running = false;
+
+    var PARTICLE_DENSITY = 8500;
+    var MIN_PARTICLES = 28;
+    var MAX_PARTICLES = 90;
+
+    var CONNECTION_DISTANCE = 135;
+    var CONNECTION_DISTANCE_SQUARED =
+      CONNECTION_DISTANCE * CONNECTION_DISTANCE;
+
     var SPEED = 0.18;
 
-    function getTealRGB() {
-      var v = getComputedStyle(document.documentElement).getPropertyValue('--teal').trim();
-      var hex = v.replace('#', '');
-      if (hex.length !== 6) return '14,124,107';
-      return parseInt(hex.substring(0, 2), 16) + ',' +
-             parseInt(hex.substring(2, 4), 16) + ',' +
-             parseInt(hex.substring(4, 6), 16);
+    var tealRGB = '14,124,107';
+
+    /* ---------------------------------------------
+       Theme color
+    --------------------------------------------- */
+
+    function updateColor() {
+      var color = getComputedStyle(
+        document.documentElement
+      )
+        .getPropertyValue('--teal')
+        .trim()
+        .replace('#', '');
+
+      if (/^[0-9a-fA-F]{6}$/.test(color)) {
+        tealRGB =
+          parseInt(color.substring(0, 2), 16) + ',' +
+          parseInt(color.substring(2, 4), 16) + ',' +
+          parseInt(color.substring(4, 6), 16);
+      }
     }
 
-    function seedParticles() {
-      var area = Math.max(width * height, 1);
-      var count = Math.max(MIN_PARTICLES, Math.min(MAX_PARTICLES, Math.round(area / DENSITY)));
+    /* ---------------------------------------------
+       Canvas size
+    --------------------------------------------- */
+
+    function resizeCanvas() {
+      width = Math.max(
+        1,
+        Math.round(window.innerWidth)
+      );
+
+      height = Math.max(
+        1,
+        Math.round(window.innerHeight)
+      );
+
+      dpr = Math.min(
+        window.devicePixelRatio || 1,
+        2
+      );
+
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+
+      ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+      );
+
+      updateColor();
+      createParticles();
+    }
+
+    /* ---------------------------------------------
+       Create particles
+    --------------------------------------------- */
+
+    function createParticles() {
+      var area = Math.max(
+        width * height,
+        1
+      );
+
+      var count = Math.round(
+        area / PARTICLE_DENSITY
+      );
+
+      count = Math.max(
+        MIN_PARTICLES,
+        Math.min(
+          MAX_PARTICLES,
+          count
+        )
+      );
+
       particles = [];
+
       for (var i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * SPEED,
-          vy: (Math.random() - 0.5) * SPEED,
-          r: 1 + Math.random() * 1.4
+
+          vx:
+            (Math.random() - 0.5) *
+            SPEED,
+
+          vy:
+            (Math.random() - 0.5) *
+            SPEED,
+
+          radius:
+            0.8 +
+            Math.random() * 1.4
         });
       }
     }
 
-    function resize() {
-      var rect = header.getBoundingClientRect();
-      // Fallback if the header hasn't been laid out yet (rect can be 0x0
-      // momentarily on first paint) — use viewport width and a sane default.
-      width = rect.width > 0 ? rect.width : window.innerWidth;
-      height = rect.height > 0 ? rect.height : 320;
+    /* ---------------------------------------------
+       Update particle positions
+    --------------------------------------------- */
 
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = Math.round(width * dpr);
-      canvas.height = Math.round(height * dpr);
-      canvas.style.width = width + 'px';
-      canvas.style.height = height + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-      seedParticles();
-    }
-
-    function step() {
-      var rgb = getTealRGB();
-      ctx.clearRect(0, 0, width, height);
-
+    function updateParticles() {
       for (var i = 0; i < particles.length; i++) {
-        var p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x <= 0 || p.x >= width) p.vx *= -1;
-        if (p.y <= 0 || p.y >= height) p.vy *= -1;
-        p.x = Math.max(0, Math.min(width, p.x));
-        p.y = Math.max(0, Math.min(height, p.y));
-      }
+        var particle = particles[i];
 
-      for (var a = 0; a < particles.length; a++) {
-        for (var b = a + 1; b < particles.length; b++) {
-          var dx = particles[a].x - particles[b].x;
-          var dy = particles[a].y - particles[b].y;
-          var dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < LINK_DIST) {
-            var alpha = (1 - dist / LINK_DIST) * 0.35;
-            ctx.strokeStyle = 'rgba(' + rgb + ',' + alpha.toFixed(3) + ')';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(particles[a].x, particles[a].y);
-            ctx.lineTo(particles[b].x, particles[b].y);
-            ctx.stroke();
-          }
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+
+        if (particle.x <= 0) {
+          particle.x = 0;
+          particle.vx =
+            Math.abs(particle.vx);
+        }
+
+        if (particle.x >= width) {
+          particle.x = width;
+          particle.vx =
+            -Math.abs(particle.vx);
+        }
+
+        if (particle.y <= 0) {
+          particle.y = 0;
+          particle.vy =
+            Math.abs(particle.vy);
+        }
+
+        if (particle.y >= height) {
+          particle.y = height;
+          particle.vy =
+            -Math.abs(particle.vy);
         }
       }
+    }
 
-      for (var j = 0; j < particles.length; j++) {
-        var pt = particles[j];
+    /* ---------------------------------------------
+       Draw connecting lines
+    --------------------------------------------- */
+
+    function drawConnections() {
+      ctx.lineWidth = 1;
+
+      for (
+        var i = 0;
+        i < particles.length;
+        i++
+      ) {
+        var first = particles[i];
+
+        for (
+          var j = i + 1;
+          j < particles.length;
+          j++
+        ) {
+          var second = particles[j];
+
+          var dx =
+            first.x -
+            second.x;
+
+          var dy =
+            first.y -
+            second.y;
+
+          var distanceSquared =
+            dx * dx +
+            dy * dy;
+
+          if (
+            distanceSquared >
+            CONNECTION_DISTANCE_SQUARED
+          ) {
+            continue;
+          }
+
+          var distance =
+            Math.sqrt(
+              distanceSquared
+            );
+
+          var opacity =
+            (
+              1 -
+              distance /
+              CONNECTION_DISTANCE
+            ) * 0.28;
+
+          ctx.strokeStyle =
+            'rgba(' +
+            tealRGB +
+            ',' +
+            opacity +
+            ')';
+
+          ctx.beginPath();
+
+          ctx.moveTo(
+            first.x,
+            first.y
+          );
+
+          ctx.lineTo(
+            second.x,
+            second.y
+          );
+
+          ctx.stroke();
+        }
+      }
+    }
+
+    /* ---------------------------------------------
+       Draw particles
+    --------------------------------------------- */
+
+    function drawParticles() {
+      ctx.fillStyle =
+        'rgba(' +
+        tealRGB +
+        ',0.55)';
+
+      for (
+        var i = 0;
+        i < particles.length;
+        i++
+      ) {
+        var particle =
+          particles[i];
+
         ctx.beginPath();
-        ctx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(' + rgb + ',0.55)';
+
+        ctx.arc(
+          particle.x,
+          particle.y,
+          particle.radius,
+          0,
+          Math.PI * 2
+        );
+
         ctx.fill();
       }
+    }
 
-      if (running) rafId = requestAnimationFrame(step);
+    /* ---------------------------------------------
+       Draw frame
+    --------------------------------------------- */
+
+    function draw() {
+      ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+      );
+
+      drawConnections();
+      drawParticles();
+    }
+
+    /* ---------------------------------------------
+       Animation
+    --------------------------------------------- */
+
+    function animate() {
+      if (!running) {
+        return;
+      }
+
+      ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+      );
+
+      updateParticles();
+      drawConnections();
+      drawParticles();
+
+      animationFrame =
+        requestAnimationFrame(
+          animate
+        );
     }
 
     function start() {
-      if (running || reduceMotion) return;
+      if (
+        running ||
+        motionQuery.matches ||
+        document.hidden
+      ) {
+        return;
+      }
+
       running = true;
-      rafId = requestAnimationFrame(step);
+
+      animationFrame =
+        requestAnimationFrame(
+          animate
+        );
     }
 
     function stop() {
+      if (!running) {
+        return;
+      }
+
       running = false;
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = null;
+
+      if (animationFrame) {
+        cancelAnimationFrame(
+          animationFrame
+        );
+
+        animationFrame = 0;
+      }
     }
 
-    resize();
+    /* ---------------------------------------------
+       Initial setup
+    --------------------------------------------- */
 
-    if (reduceMotion) {
-      step(); // single static frame
+    resizeCanvas();
+
+    if (motionQuery.matches) {
+      draw();
       return;
     }
 
     start();
 
-    // Re-measure whenever the header itself changes size (font swap,
-    // window resize, content reflow) — more reliable than a plain
-    // window 'resize' listener alone.
-    if ('ResizeObserver' in window) {
-      new ResizeObserver(function () { resize(); }).observe(header);
-    } else {
-      window.addEventListener('resize', resize);
+    /* ---------------------------------------------
+       Resize
+    --------------------------------------------- */
+
+    window.addEventListener(
+      'resize',
+      function () {
+        resizeCanvas();
+
+        if (motionQuery.matches) {
+          draw();
+        }
+      },
+      {
+        passive: true
+      }
+    );
+
+    /* ---------------------------------------------
+       Pause when browser tab is hidden
+    --------------------------------------------- */
+
+    document.addEventListener(
+      'visibilitychange',
+      function () {
+        if (document.hidden) {
+          stop();
+        } else {
+          start();
+        }
+      }
+    );
+
+    /* ---------------------------------------------
+       Reduced motion changes
+    --------------------------------------------- */
+
+    function handleMotionChange(event) {
+      if (event.matches) {
+        stop();
+        draw();
+      } else {
+        start();
+      }
     }
 
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) start(); else stop();
-        });
-      }, { threshold: 0 }).observe(canvas);
+    if (
+      typeof motionQuery.addEventListener ===
+      'function'
+    ) {
+      motionQuery.addEventListener(
+        'change',
+        handleMotionChange
+      );
+    } else if (
+      typeof motionQuery.addListener ===
+      'function'
+    ) {
+      motionQuery.addListener(
+        handleMotionChange
+      );
     }
-
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden) stop(); else start();
-    });
   }
 
-  // Wait for full load (fonts, stylesheets, layout) so the header has
-  // its real, final size before we measure it — this is the #1 reason
-  // a canvas ends up sized 0x0 and appears to "not work".
-  if (document.readyState === 'complete') {
-    init();
+  if (
+    document.readyState ===
+    'loading'
+  ) {
+    document.addEventListener(
+      'DOMContentLoaded',
+      initParticles,
+      {
+        once: true
+      }
+    );
   } else {
-    window.addEventListener('load', init);
+    initParticles();
   }
+
 })();

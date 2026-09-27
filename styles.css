@@ -161,7 +161,7 @@ h1 {
   line-height: 1.08;
   margin: 0 0 18px;
   font-weight: 600;
-  max-width: 14ch;
+  max-width: 100%;
 }
 
 .lede {

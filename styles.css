@@ -219,18 +219,15 @@ a {
    ========================================================= */
 
 header {
-  position: relative;
-  overflow: hidden;
-
   padding: 64px 0 40px;
 
   border-bottom: 1px solid var(--line);
 }
 
 .particles-canvas {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: -1;
 
   display: block;
 
@@ -242,7 +239,6 @@ header {
 
 .header-content {
   position: relative;
-  z-index: 1;
 }
 
 .theme-toggle {
@@ -1020,22 +1016,4 @@ footer .mono {
   .job {
     padding-left: 22px;
   }
-}
-
-.particles-canvas {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-
-  display: block;
-
-  width: 100%;
-  height: 100%;
-
-  pointer-events: none;
-}
-
-header {
-  position: relative;
-  overflow: hidden;
 }

@@ -8,12 +8,6 @@
       return;
     }
 
-    var header = canvas.closest('header');
-
-    if (!header) {
-      return;
-    }
-
     var ctx = canvas.getContext('2d');
 
     if (!ctx) {
@@ -70,16 +64,14 @@
     --------------------------------------------- */
 
     function resizeCanvas() {
-      var rect = header.getBoundingClientRect();
-
       width = Math.max(
         1,
-        Math.round(rect.width)
+        Math.round(window.innerWidth)
       );
 
       height = Math.max(
         1,
-        Math.round(rect.height)
+        Math.round(window.innerHeight)
       );
 
       dpr = Math.min(
@@ -384,69 +376,22 @@
     start();
 
     /* ---------------------------------------------
-       ResizeObserver
+       Resize
     --------------------------------------------- */
 
-    if ('ResizeObserver' in window) {
-      var resizeObserver =
-        new ResizeObserver(
-          function () {
-            resizeCanvas();
+    window.addEventListener(
+      'resize',
+      function () {
+        resizeCanvas();
 
-            if (
-              motionQuery.matches
-            ) {
-              draw();
-            }
-          }
-        );
-
-      resizeObserver.observe(header);
-    } else {
-      window.addEventListener(
-        'resize',
-        resizeCanvas,
-        {
-          passive: true
+        if (motionQuery.matches) {
+          draw();
         }
-      );
-    }
-
-    /* ---------------------------------------------
-       Pause when hero is not visible
-    --------------------------------------------- */
-
-    if (
-      'IntersectionObserver' in
-      window
-    ) {
-      var visibilityObserver =
-        new IntersectionObserver(
-          function (entries) {
-            for (
-              var i = 0;
-              i < entries.length;
-              i++
-            ) {
-              if (
-                entries[i]
-                  .isIntersecting
-              ) {
-                start();
-              } else {
-                stop();
-              }
-            }
-          },
-          {
-            threshold: 0
-          }
-        );
-
-      visibilityObserver.observe(
-        header
-      );
-    }
+      },
+      {
+        passive: true
+      }
+    );
 
     /* ---------------------------------------------
        Pause when browser tab is hidden

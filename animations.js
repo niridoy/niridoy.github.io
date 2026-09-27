@@ -23,13 +23,27 @@
   }
 
   // ---- animated counters ----
-  var counters = document.querySelectorAll('.n[data-count]');
-  if (!counters.length) return;
+  var counters = document.querySelectorAll('[data-count]');
+
+  if (!counters.length) {
+    console.warn(
+      '[animations] No elements with a data-count attribute were found. ' +
+      'Each stat number needs both: <span class="n" data-count="7" data-suffix="+">0</span>. ' +
+      'If your stat spans only say <span class="n">7+</span> with no data-count attribute, ' +
+      'the counter has nothing to animate and will stay at its literal text.'
+    );
+    return;
+  }
 
   function easeOutQuint(t) { return 1 - Math.pow(1 - t, 5); }
 
   function animateCounter(el) {
-    var target = parseFloat(el.getAttribute('data-count'), 10) || 0;
+    var raw = el.getAttribute('data-count');
+    var target = parseFloat(raw);
+    if (isNaN(target)) {
+      console.warn('[animations] data-count on', el, 'is not a number:', raw);
+      return;
+    }
     var suffix = el.getAttribute('data-suffix') || '';
 
     if (reduceMotion) {
@@ -66,7 +80,7 @@
         counterObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.6 });
+  }, { threshold: 0.4 });
 
   counters.forEach(function (el) { counterObserver.observe(el); });
 })();

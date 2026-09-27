@@ -333,10 +333,8 @@ footer a:focus-visible {
 
 h1 {
   max-width: 100%;
-
   margin: 0 0 18px;
-
-  font-size: clamp(34px, 5.5vw, 54px);
+  font-size: clamp(34px, 5.5vw, 35px);
   line-height: 1.08;
   font-weight: 600;
 }
@@ -1016,4 +1014,22 @@ footer .mono {
   .job {
     padding-left: 22px;
   }
+}
+
+.links .email-reveal {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.links .email-reveal:hover {
+    text-decoration: underline;
+}
+
+.contact-cta.email-reveal {
+    font: inherit;
+    cursor: pointer;
 }

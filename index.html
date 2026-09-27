@@ -1,16 +1,23 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <!-- Primary SEO -->
     <title>Md. Nazmul Islam — Senior Backend Engineer &amp; Tech Lead</title>
+
     <meta name="description"
-        content="Md. Nazmul Islam is a Senior Backend Engineer and Tech Lead in Dhaka, Bangladesh, with 7+ years of experience building scalable backend systems using Java, PHP, Go, Spring Boot, Laravel, microservices, Kubernetes, and distributed systems.">
+        content="Md. Nazmul Islam — Senior Backend Engineer &amp; Tech Lead in Dhaka, Bangladesh. 7+ years building scalable Java, PHP &amp; Go microservices and Kubernetes systems.">
+
     <meta name="author" content="Md. Nazmul Islam">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
     <link rel="canonical" href="https://nazmulislam.me/">
+
+    <meta name="theme-color" content="#EEF0F3">
+    <meta name="color-scheme" content="light dark">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -29,25 +36,37 @@
         content="Senior Backend Engineer and Tech Lead specializing in scalable backend systems, microservices, distributed systems, and infrastructure.">
     <meta name="twitter:image" content="https://nazmulislam.me/images/og-image.jpg">
 
-    <!-- Set theme before first paint to avoid a flash of the wrong mode -->
+    <!-- Apply saved theme before first paint -->
     <script>
         (function () {
+            'use strict';
+
+            var root = document.documentElement;
+
+            root.classList.add('js');
+
             try {
-                var saved = localStorage.getItem('theme');
-                if (saved === 'light' || saved === 'dark') {
-                    document.documentElement.setAttribute('data-theme', saved);
+                var savedTheme = localStorage.getItem('theme');
+
+                if (savedTheme === 'light' || savedTheme === 'dark') {
+                    root.setAttribute('data-theme', savedTheme);
                 }
-            } catch (e) { }
+            } catch (error) {
+                /* Storage may be unavailable. */
+            }
         })();
     </script>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FH8EG23XDR"></script>
+
     <script>
         window.dataLayer = window.dataLayer || [];
+
         function gtag() {
             dataLayer.push(arguments);
         }
+
         gtag('js', new Date());
         gtag('config', 'G-FH8EG23XDR');
     </script>
@@ -55,303 +74,913 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
         rel="stylesheet">
 
+    <!-- Main stylesheet -->
     <link rel="stylesheet" href="styles.css">
 
     <!-- Person structured data -->
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Md. Nazmul Islam",
-        "givenName": "Nazmul",
-        "familyName": "Islam",
-        "jobTitle": "Senior Backend Engineer & Tech Lead",
-        "description": "Md. Nazmul Islam is a Senior Backend Engineer and Tech Lead in Dhaka, Bangladesh, specializing in Java, PHP, Go, Spring Boot, Laravel, microservices, distributed systems, Kubernetes, and scalable backend architecture.",
-        "url": "https://nazmulislam.me/",
-        "email": "nazmul.islam.ridoy@gmail.com",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Dhaka",
-            "addressCountry": "BD"
-        },
-        "sameAs": [
-            "https://linkedin.com/in/niridoy",
-            "https://github.com/niridoy",
-            "https://hackerrank.com/profile/niridoybd"
-        ]
-    }
-    </script>
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://nazmulislam.me/#person",
+    "name": "Md. Nazmul Islam",
+    "givenName": "Nazmul",
+    "familyName": "Islam",
+    "jobTitle": "Senior Backend Engineer & Tech Lead",
+    "description": "Md. Nazmul Islam is a Senior Backend Engineer and Tech Lead in Dhaka, Bangladesh, specializing in Java, PHP, Go, Spring Boot, Laravel, microservices, distributed systems, Kubernetes, and scalable backend architecture.",
+    "url": "https://nazmulislam.me/",
+    "email": "nazmul.islam.ridoy@gmail.com",
+    "image": "https://nazmulislam.me/images/og-image.jpg",
+    "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Dhaka",
+        "addressCountry": "BD"
+    },
+    "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Daffodil Institute of Information Technology"
+    },
+    "knowsAbout": [
+        "Backend Engineering",
+        "Software Architecture",
+        "Microservices",
+        "Distributed Systems",
+        "Java",
+        "Spring Boot",
+        "PHP",
+        "Laravel",
+        "Go",
+        "Kubernetes",
+        "Docker",
+        "PostgreSQL",
+        "MySQL",
+        "Redis",
+        "Kafka",
+        "Elasticsearch",
+        "IoT",
+        "Site Reliability Engineering"
+    ],
+    "sameAs": [
+        "https://linkedin.com/in/niridoy",
+        "https://github.com/niridoy",
+        "https://hackerrank.com/profile/niridoybd"
+    ]
+}
+</script>
+
 </head>
 
-<body>
+<body id="top">
+    <!-- Accessibility -->
+    <a class="skip-link" href="#main-content">
+        Skip to main content
+    </a>
 
-    <div id="page-loader" class="page-loader" aria-hidden="true">
-        <svg class="loader-bot" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-            <line class="bot-antenna" x1="60" y1="14" x2="60" y2="28" stroke="currentColor" stroke-width="3"
-                stroke-linecap="round" />
-            <circle class="bot-antenna-tip" cx="60" cy="10" r="5" fill="currentColor" />
-            <rect x="28" y="28" width="64" height="52" rx="16" fill="none" stroke="currentColor" stroke-width="3" />
-            <circle class="bot-eye" cx="47" cy="54" r="6" fill="currentColor" />
-            <circle class="bot-eye" cx="73" cy="54" r="6" fill="currentColor" />
-            <rect x="42" y="68" width="36" height="4" rx="2" fill="currentColor" />
-            <line x1="28" y1="46" x2="16" y2="46" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
-            <line x1="92" y1="46" x2="104" y2="46" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
-            <rect x="46" y="86" width="28" height="10" rx="4" fill="none" stroke="currentColor" stroke-width="3" />
-        </svg>
-        <span class="loader-label mono">loading…</span>
-    </div>
+    <!-- =====================================================
+     SECTION NAVIGATION
+     ===================================================== -->
+    <nav class="section-nav" aria-label="Section navigation">
+        <div class="section-nav-inner">
+
+            <div class="section-nav-links">
+
+                <a href="#home" data-index="00">
+                    Home
+                </a>
+
+                <a href="#about" data-index="01">
+                    About
+                </a>
+
+                <a href="#experience" data-index="02">
+                    Experience
+                </a>
+
+                <a href="#projects" data-index="03">
+                    Projects
+                </a>
+
+                <a href="#skills" data-index="04">
+                    Skills
+                </a>
+
+                <a href="#education" data-index="05">
+                    Education
+                </a>
+
+                <a href="#contact" data-index="06">
+                    Contact
+                </a>
+
+            </div>
+
+            <!-- Theme toggle -->
+            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light mode"
+                aria-pressed="false">
+
+                <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" aria-hidden="true">
+
+                    <circle cx="12" cy="12" r="4.5"></circle>
+                    <line x1="12" y1="2.5" x2="12" y2="5.5"></line>
+                    <line x1="12" y1="18.5" x2="12" y2="21.5"></line>
+                    <line x1="2.5" y1="12" x2="5.5" y2="12"></line>
+                    <line x1="18.5" y1="12" x2="21.5" y2="12"></line>
+                    <line x1="5" y1="5" x2="7.1" y2="7.1"></line>
+                    <line x1="16.9" y1="16.9" x2="19" y2="21"></line>
+                    <line x1="19" y1="5" x2="16.9" y2="7.1"></line>
+                    <line x1="7.1" y1="16.9" x2="5" y2="19"></line>
+
+                </svg>
+
+                <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                    <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"></path>
+
+                </svg>
+
+            </button>
+
+        </div>
+    </nav>
 
     <div class="wrap">
-        <header class="reveal">
-            <canvas class="particles-canvas" id="particles-canvas"></canvas>
-            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light mode">
-                <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round">
-                    <circle cx="12" cy="12" r="4.5" />
-                    <line x1="12" y1="2.5" x2="12" y2="5.5" />
-                    <line x1="12" y1="18.5" x2="12" y2="21.5" />
-                    <line x1="2.5" y1="12" x2="5.5" y2="12" />
-                    <line x1="18.5" y1="12" x2="21.5" y2="12" />
-                    <line x1="5" y1="5" x2="7.1" y2="7.1" />
-                    <line x1="16.9" y1="16.9" x2="19" y2="19" />
-                    <line x1="19" y1="5" x2="16.9" y2="7.1" />
-                    <line x1="7.1" y1="16.9" x2="5" y2="19" />
-                </svg>
-                <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z" />
-                </svg>
-            </button>
+
+        <!-- =====================================================
+         HERO
+         ===================================================== -->
+        <header id="home">
+
+            <!-- Decorative particle background -->
+            <canvas class="particles-canvas" id="particles-canvas" aria-hidden="true">
+            </canvas>
+
             <div class="header-content">
-                <p class="kicker">Senior Backend Engineer / Tech Lead / SRE — Dhaka, Bangladesh</p>
-                <h1>Md. Nazmul Islam — Senior Backend Engineer &amp; Tech Lead</h1>
-                <p class="lede">I build backend systems that hold up under real load. Seven years architecting and operating
-                    microservices, IoT telemetry pipelines, and OTA travel platforms, from the database schema up through
-                    the Kubernetes cluster that serves it.</p>
-                <div class="links">
-                    <a href="mailto:nazmul.islam.ridoy@gmail.com">nazmul.islam.ridoy@gmail.com</a>
-                    <a href="https://linkedin.com/in/niridoy" target="_blank" rel="noopener">linkedin.com/in/niridoy</a>
-                    <a href="https://github.com/niridoy" target="_blank" rel="noopener">github.com/niridoy</a>
-                    <a href="https://hackerrank.com/profile/niridoybd" target="_blank" rel="noopener">hackerrank</a>
+
+                <p class="kicker">
+                    Senior Backend Engineer / Tech Lead / SRE — Dhaka, Bangladesh
+                </p>
+
+                <h1>
+                    Md. Nazmul Islam — Senior Backend Engineer &amp; Tech Lead
+                </h1>
+
+                <p class="lede">
+                    I build backend systems that hold up under real load.
+                    Seven years architecting and operating microservices,
+                    IoT telemetry pipelines, and OTA travel platforms,
+                    from the database schema up through the Kubernetes
+                    cluster that serves it.
+                </p>
+
+                <div class="links" aria-label="Professional links">
+
+                    <a href="mailto:nazmul.islam.ridoy@gmail.com">
+                        nazmul.islam.ridoy@gmail.com
+                    </a>
+
+                    <a href="https://linkedin.com/in/niridoy" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn profile">
+
+                        LinkedIn
+
+                    </a>
+
+                    <a href="https://github.com/niridoy" target="_blank" rel="noopener noreferrer"
+                        aria-label="GitHub profile">
+
+                        GitHub
+
+                    </a>
+
+                    <a href="https://hackerrank.com/profile/niridoybd" target="_blank" rel="noopener noreferrer"
+                        aria-label="HackerRank profile">
+
+                        HackerRank
+
+                    </a>
+
                 </div>
+
             </div>
+
         </header>
 
-        <div class="stats reveal">
-            <div class="stat"><span class="n" data-count="7" data-suffix="+">7+</span><span class="l">years in
-                    production</span></div>
-            <div class="stat"><span class="n" data-count="30" data-suffix="+">30+</span><span class="l">microservices
-                    contributed to</span></div>
-            <div class="stat"><span class="n" data-count="80" data-suffix="M+">80M+</span><span class="l">weekly IoT data
-                    points</span></div>
-            <div class="stat"><span class="n" data-count="40" data-suffix="%">40%</span><span class="l">latency reduction
-                    shipped</span></div>
-        </div>
+        <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+        <main id="main-content">
 
-        <section class="about reveal">
-            <div class="head-row">
-                <h2>About</h2><span class="idx">01</span>
-            </div>
-            <p>I lead backend and platform work across travel, IoT, and enterprise systems — most recently a 30-service
-                architecture behind flight, hotel, and add-on bookings for an OTA. My core stack is Java, PHP, and Go,
-                backed by PgSQL, Redis, and Kafka, with Elasticsearch for anything that needs to be searched fast.</p>
-            <p>Outside of feature work, I carry the SRE half of the job: CI/CD with Jenkins and GitHub Actions,
-                Kubernetes deployments, Linux administration, and the monitoring and security practices that keep a
-                system reliable after launch, not just on launch day.</p>
-        </section>
+            <!-- Career statistics -->
+            <section class="stats" aria-label="Career highlights">
 
-        <section class="reveal">
-            <div class="head-row">
-                <h2>Experience</h2><span class="idx">02</span>
-            </div>
-            <div class="timeline">
-                <div class="job">
-                    <span class="when">Jan 2026 — Present</span>
-                    <h3>Tech Lead</h3>
-                    <span class="org">Adventure Dhaka Limited, Dhaka</span>
-                    <ul>
-                        <li>Design and development across a 30+ service architecture for flight booking, hotel booking,
-                            and travel add-ons</li>
-                        <li>Led a Java/Spring Boot service syncing real-time pricing and listings to Google Hotel Ads
-                        </li>
-                        <li>Built hotel search and booking in PHP/Laravel with channel-manager and third-party API
-                            integrations</li>
-                        <li>Built a hotel inventory and pricing sync service in Go/Echo</li>
-                        <li>Own CI/CD (Jenkins, GitHub Actions), Kubernetes deployments, and Prometheus/Grafana
-                            monitoring</li>
-                        <li>Run code reviews, architecture decisions, and sprint ceremonies for the team</li>
-                    </ul>
-                </div>
-                <div class="job">
-                    <span class="when">Nov 2024 — Jan 2026</span>
-                    <h3>Senior Software Engineer, Project Lead</h3>
-                    <span class="org">Adventure Dhaka Limited</span>
-                    <ul>
-                        <li>Owned technical architecture across several concurrent projects</li>
-                        <li>Promoted from Senior Software Engineer into the Project Lead role</li>
-                    </ul>
-                </div>
-                <div class="job">
-                    <span class="when">Sep 2024 — Oct 2024</span>
-                    <h3>Senior Software Engineer</h3>
-                    <span class="org">Adventure Dhaka Limited</span>
-                    <ul>
-                        <li>Feature development and cross-team delivery coordination</li>
-                    </ul>
-                </div>
-                <div class="job">
-                    <span class="when">Sep 2023 — Aug 2024</span>
-                    <h3>Senior Software Engineer, Software Division</h3>
-                    <span class="org">A Cluster LLC, Maryland, USA</span>
-                    <ul>
-                        <li>Feature development and server administration for a distributed team</li>
-                    </ul>
-                </div>
-                <div class="job">
-                    <span class="when">Nov 2021 — Aug 2023</span>
-                    <h3>Senior Software Engineer (PHP)</h3>
-                    <span class="org">Bondstein Technologies Limited, Dhaka</span>
-                    <ul>
-                        <li>Cut response times 40% through targeted performance optimization</li>
-                        <li>Built and ran a Vehicle Tracking System processing 80M+ data points weekly in real time</li>
-                        <li>Owned deployment, monitoring, and database schema design for the platform</li>
-                    </ul>
-                </div>
-                <div class="job">
-                    <span class="when">Jun 2020 — Nov 2021</span>
-                    <h3>Senior Software Developer (Laravel)</h3>
-                    <span class="org">Spondon Information Technology, Dhaka</span>
-                    <ul>
-                        <li>Built enterprise systems on a LEMP stack with RESTful APIs and third-party integrations</li>
-                    </ul>
-                </div>
-                <div class="job">
-                    <span class="when">Jul 2018 — Oct 2019</span>
-                    <h3>Application Developer (Laravel)</h3>
-                    <span class="org">Dakkha Ltd. &amp; HerStory Foundation, Dhaka</span>
-                    <ul>
-                        <li>Built full application modules end to end on LEMP, from schema to deployment</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+                <div class="stat">
+                    <span class="n" data-count="7" data-suffix="+">
+                        7+
+                    </span>
 
-        <section class="reveal">
-            <div class="head-row">
-                <h2>Selected projects</h2><span class="idx">03</span>
-            </div>
-            <div class="projects">
-                <div class="proj">
-                    <h3>Distributed travel booking platform</h3>
-                    <p>Built a distributed travel ecosystem covering hotel, air ticketing, and supporting services
-                        across 30+ microservices, using event-driven workflows, message queues, Redis caching, and
-                        PostgreSQL for reliable and scalable data processing.</p>
-                    <span class="stack">Java · Spring Boot · PostgreSQL · Redis · Elasticsearch · Message Queue ·
-                        Event-Driven
-                        Architecture · Docker · Kubernetes</span>
+                    <span class="l">
+                        years in production
+                    </span>
                 </div>
-                <div class="proj">
-                    <h3>OTA hotel booking platform</h3>
-                    <p>Multi-channel hotel booking system with real-time inventory sync and Google Hotel Ads integration
-                        across a microservices architecture.</p>
-                    <span class="stack">Java · Spring Boot · PHP · Laravel · Go · Echo · MySQL · Redis · Docker ·
-                        Kubernetes</span>
-                </div>
-                <div class="proj">
-                    <h3>Vehicle tracking system (IoT)</h3>
-                    <p>Real-time tracking and visualization platform handling 80M+ telemetry points a week, with
-                        database performance tuned for that volume. Designed as a distributed system: a central
-                        controller, a central data-receiver server ingesting telemetry from vehicle devices, and
-                        several client portals consuming that data independently for tracking and reporting.</p>
-                    <span class="stack">PHP · Laravel · MySQL · Redis · WebSocket · JavaScript</span>
-                </div>
-                <div class="proj">
-                    <h3>Enterprise LMS &amp; inventory systems</h3>
-                    <p>Learning management and inventory/accounting systems built for internal scale, with a focus on
-                        reporting and content delivery.</p>
-                    <span class="stack">PHP · Laravel · MySQL · JavaScript · Bootstrap</span>
-                </div>
-                <div class="proj proj-experimental">
-                    <h3>RAG-based customer knowledge assistant <span class="mono tag-experimental">— test project</span>
-                    </h3>
-                    <p>Prototyped a Retrieval-Augmented Generation system to answer customer questions from a product
-                        knowledge base. Ran Ollama for local LLM inference, embedded and indexed documents in a vector
-                        database for semantic search, and used Python to orchestrate ingestion, retrieval, and
-                        prompt assembly. Built as a proof of concept to explore the stack, not a shipped production
-                        system.</p>
-                    <span class="stack">Python · Ollama · Vector Database</span>
-                </div>
-            </div>
-        </section>
 
-        <section class="reveal">
-            <div class="head-row">
-                <h2>Skills</h2><span class="idx">04</span>
-            </div>
-            <div class="skillgrid">
-                <div class="skillgroup">
-                    <div class="cat">languages &amp; frameworks</div>
-                    <div class="chiprow">
-                        <span class="chip">Java</span><span class="chip">PHP</span><span class="chip">Go</span><span
-                            class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">Spring
-                            Boot</span><span class="chip">Laravel</span><span class="chip">Echo</span><span
-                            class="chip">Node.js</span>
+                <div class="stat">
+                    <span class="n" data-count="30" data-suffix="+">
+                        30+
+                    </span>
+
+                    <span class="l">
+                        microservices contributed
+                    </span>
+                </div>
+
+                <div class="stat">
+                    <span class="n" data-count="80" data-suffix="M+">
+                        80M+
+                    </span>
+
+                    <span class="l">
+                        weekly IoT data points
+                    </span>
+                </div>
+
+                <div class="stat">
+                    <span class="n" data-count="40" data-suffix="%">
+                        40%
+                    </span>
+
+                    <span class="l">
+                        latency reduction shipped
+                    </span>
+                </div>
+
+            </section>
+
+            <!-- =================================================
+             ABOUT
+             ================================================= -->
+            <section id="about" class="about reveal" aria-labelledby="about-heading">
+
+                <div class="head-row">
+
+                    <h2 id="about-heading">
+                        About
+                    </h2>
+
+                    <span class="idx" aria-hidden="true">
+                        01
+                    </span>
+
+                </div>
+
+                <p>
+                    I lead backend and platform work across travel, IoT,
+                    and enterprise systems — most recently a 30-service
+                    architecture behind flight, hotel, and add-on bookings
+                    for an OTA. My core stack is Java, PHP, and Go, backed
+                    by PostgreSQL, Redis, and Kafka, with Elasticsearch
+                    for anything that needs to be searched fast.
+                </p>
+
+                <p>
+                    Outside of feature work, I carry the SRE half of the job:
+                    CI/CD with Jenkins and GitHub Actions, Kubernetes
+                    deployments, Linux administration, and the monitoring
+                    and security practices that keep a system reliable
+                    after launch, not just on launch day.
+                </p>
+
+            </section>
+
+            <!-- =================================================
+             EXPERIENCE
+             ================================================= -->
+            <section id="experience" class="reveal" aria-labelledby="experience-heading">
+
+                <div class="head-row">
+
+                    <h2 id="experience-heading">
+                        Experience
+                    </h2>
+
+                    <span class="idx" aria-hidden="true">
+                        02
+                    </span>
+
+                </div>
+
+                <div class="timeline">
+
+                    <article class="job">
+
+                        <time class="when" datetime="2026-01">
+
+                            Jan 2026 — Present
+
+                        </time>
+
+                        <h3>
+                            Tech Lead
+                        </h3>
+
+                        <span class="org">
+                            Adventure Dhaka Limited, Dhaka
+                        </span>
+
+                        <ul>
+
+                            <li>
+                                Design and development across a 30+ service
+                                architecture for flight booking, hotel
+                                booking, and travel add-ons
+                            </li>
+
+                            <li>
+                                Led a Java/Spring Boot service syncing
+                                real-time pricing and listings to
+                                Google Hotel Ads
+                            </li>
+
+                            <li>
+                                Built hotel search and booking in PHP/Laravel
+                                with channel-manager and third-party API
+                                integrations
+                            </li>
+
+                            <li>
+                                Built a hotel inventory and pricing sync
+                                service in Go/Echo
+                            </li>
+
+                            <li>
+                                Own CI/CD with Jenkins and GitHub Actions,
+                                Kubernetes deployments, and
+                                Prometheus/Grafana monitoring
+                            </li>
+
+                            <li>
+                                Run code reviews, architecture decisions,
+                                and sprint ceremonies for the team
+                            </li>
+
+                        </ul>
+
+                    </article>
+
+                    <article class="job">
+
+                        <time class="when" datetime="2024-11">
+
+                            Nov 2024 — Jan 2026
+
+                        </time>
+
+                        <h3>
+                            Senior Software Engineer, Project Lead
+                        </h3>
+
+                        <span class="org">
+                            Adventure Dhaka Limited
+                        </span>
+
+                        <ul>
+
+                            <li>
+                                Owned technical architecture across several
+                                concurrent projects
+                            </li>
+
+                            <li>
+                                Promoted from Senior Software Engineer
+                                into the Project Lead role
+                            </li>
+
+                        </ul>
+
+                    </article>
+
+                    <article class="job">
+
+                        <time class="when" datetime="2024-09">
+
+                            Sep 2024 — Oct 2024
+
+                        </time>
+
+                        <h3>
+                            Senior Software Engineer
+                        </h3>
+
+                        <span class="org">
+                            Adventure Dhaka Limited
+                        </span>
+
+                        <ul>
+
+                            <li>
+                                Feature development and cross-team
+                                delivery coordination
+                            </li>
+
+                        </ul>
+
+                    </article>
+
+                    <article class="job">
+
+                        <time class="when" datetime="2023-09">
+
+                            Sep 2023 — Aug 2024
+
+                        </time>
+
+                        <h3>
+                            Senior Software Engineer, Software Division
+                        </h3>
+
+                        <span class="org">
+                            A Cluster LLC, Maryland, USA
+                        </span>
+
+                        <ul>
+
+                            <li>
+                                Feature development and server administration
+                                for a distributed team
+                            </li>
+
+                        </ul>
+
+                    </article>
+
+                    <article class="job">
+
+                        <time class="when" datetime="2021-11">
+
+                            Nov 2021 — Aug 2023
+
+                        </time>
+
+                        <h3>
+                            Senior Software Engineer (PHP)
+                        </h3>
+
+                        <span class="org">
+                            Bondstein Technologies Limited, Dhaka
+                        </span>
+
+                        <ul>
+
+                            <li>
+                                Cut response times 40% through targeted
+                                performance optimization
+                            </li>
+
+                            <li>
+                                Built and ran a Vehicle Tracking System
+                                processing 80M+ data points weekly
+                                in real time
+                            </li>
+
+                            <li>
+                                Owned deployment, monitoring, and database
+                                schema design for the platform
+                            </li>
+
+                        </ul>
+
+                    </article>
+
+                    <article class="job">
+
+                        <time class="when" datetime="2020-06">
+
+                            Jun 2020 — Nov 2021
+
+                        </time>
+
+                        <h3>
+                            Senior Software Developer (Laravel)
+                        </h3>
+
+                        <span class="org">
+                            Spondon Information Technology, Dhaka
+                        </span>
+
+                        <ul>
+
+                            <li>
+                                Built enterprise systems on a LEMP stack
+                                with RESTful APIs and third-party
+                                integrations
+                            </li>
+
+                        </ul>
+
+                    </article>
+
+                    <article class="job">
+
+                        <time class="when" datetime="2018-07">
+
+                            Jul 2018 — Oct 2019
+
+                        </time>
+
+                        <h3>
+                            Application Developer (Laravel)
+                        </h3>
+
+                        <span class="org">
+                            Dakkha Ltd. &amp; HerStory Foundation, Dhaka
+                        </span>
+
+                        <ul>
+
+                            <li>
+                                Built full application modules end to end
+                                on LEMP, from schema to deployment
+                            </li>
+
+                        </ul>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+            <!-- =================================================
+             PROJECTS
+             ================================================= -->
+            <section id="projects" class="reveal" aria-labelledby="projects-heading">
+
+                <div class="head-row">
+
+                    <h2 id="projects-heading">
+                        Selected Projects
+                    </h2>
+
+                    <span class="idx" aria-hidden="true">
+                        03
+                    </span>
+
+                </div>
+
+                <div class="projects">
+
+                    <article class="proj">
+
+                        <h3>
+                            Distributed travel booking platform
+                        </h3>
+
+                        <p>
+                            Built a distributed travel ecosystem covering
+                            hotel, air ticketing, and supporting services
+                            across 30+ microservices, using event-driven
+                            workflows, message queues, Redis caching,
+                            and PostgreSQL for reliable and scalable
+                            data processing.
+                        </p>
+
+                        <span class="stack">
+                            Java · Spring Boot · PostgreSQL · Redis ·
+                            Elasticsearch · Message Queue ·
+                            Event-Driven Architecture · Docker · Kubernetes
+                        </span>
+
+                    </article>
+
+                    <article class="proj">
+
+                        <h3>
+                            OTA hotel booking platform
+                        </h3>
+
+                        <p>
+                            Multi-channel hotel booking system with
+                            real-time inventory sync and Google Hotel Ads
+                            integration across a microservices architecture.
+                        </p>
+
+                        <span class="stack">
+                            Java · Spring Boot · PHP · Laravel · Go · Echo ·
+                            MySQL · Redis · Docker · Kubernetes
+                        </span>
+
+                    </article>
+
+                    <article class="proj">
+
+                        <h3>
+                            Vehicle tracking system (IoT)
+                        </h3>
+
+                        <p>
+                            Real-time tracking and visualization platform
+                            handling 80M+ telemetry points a week, with
+                            database performance tuned for that volume.
+                            Designed as a distributed system: a central
+                            controller, a central data-receiver server
+                            ingesting telemetry from vehicle devices,
+                            and several client portals consuming that
+                            data independently for tracking and reporting.
+                        </p>
+
+                        <span class="stack">
+                            PHP · Laravel · MySQL · Redis · WebSocket · JavaScript
+                        </span>
+
+                    </article>
+
+                    <article class="proj">
+
+                        <h3>
+                            Enterprise LMS &amp; inventory systems
+                        </h3>
+
+                        <p>
+                            Learning management and inventory/accounting
+                            systems built for internal scale, with a
+                            focus on reporting and content delivery.
+                        </p>
+
+                        <span class="stack">
+                            PHP · Laravel · MySQL · JavaScript · Bootstrap
+                        </span>
+
+                    </article>
+
+                    <article class="proj proj-experimental">
+
+                        <h3>
+                            RAG-based customer knowledge assistant
+                            <span class="mono tag-experimental">
+                                — test project
+                            </span>
+                        </h3>
+
+                        <p>
+                            Prototyped a Retrieval-Augmented Generation
+                            system to answer customer questions from a
+                            product knowledge base. Ran Ollama for local
+                            LLM inference, embedded and indexed documents
+                            in a vector database for semantic search,
+                            and used Python to orchestrate ingestion,
+                            retrieval, and prompt assembly. Built as a
+                            proof of concept to explore the stack, not
+                            a shipped production system.
+                        </p>
+
+                        <span class="stack">
+                            Python · Ollama · Vector Database
+                        </span>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+            <!-- =================================================
+             SKILLS
+             ================================================= -->
+            <section id="skills" class="reveal" aria-labelledby="skills-heading">
+
+                <div class="head-row">
+
+                    <h2 id="skills-heading">
+                        Skills
+                    </h2>
+
+                    <span class="idx" aria-hidden="true">
+                        04
+                    </span>
+
+                </div>
+
+                <div class="skillgrid">
+
+                    <div class="skillgroup">
+
+                        <div class="cat">
+                            Languages &amp; frameworks
+                        </div>
+
+                        <div class="chiprow">
+
+                            <span class="chip">Java</span>
+                            <span class="chip">PHP</span>
+                            <span class="chip">Go</span>
+                            <span class="chip">JavaScript</span>
+                            <span class="chip">TypeScript</span>
+                            <span class="chip">Spring Boot</span>
+                            <span class="chip">Laravel</span>
+                            <span class="chip">Echo</span>
+                            <span class="chip">Node.js</span>
+
+                        </div>
+
                     </div>
-                </div>
-                <div class="skillgroup">
-                    <div class="cat">data</div>
-                    <div class="chiprow">
-                        <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span
-                            class="chip">MongoDB</span><span class="chip">Redis</span><span
-                            class="chip">Elasticsearch</span><span class="chip">Kafka</span>
-                    </div>
-                </div>
-                <div class="skillgroup">
-                    <div class="cat">infrastructure</div>
-                    <div class="chiprow">
-                        <span class="chip">Docker</span><span class="chip">Kubernetes</span><span
-                            class="chip">Jenkins</span><span class="chip">GitHub Actions</span><span
-                            class="chip">Linux</span><span class="chip">Prometheus</span><span
-                            class="chip">Grafana</span>
-                    </div>
-                </div>
-                <div class="skillgroup">
-                    <div class="cat">frontend &amp; tooling</div>
-                    <div class="chiprow">
-                        <span class="chip">React.js</span><span class="chip">Next.js</span><span
-                            class="chip">Git</span><span class="chip">Jira</span><span class="chip">Asana</span>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section class="edu reveal">
-            <div class="head-row">
-                <h2>Education</h2><span class="idx">05</span>
-            </div>
-            <div class="timeline">
-                <div class="job">
-                    <span class="when">2017</span>
-                    <h3>BBA, Finance &amp; Banking</h3>
-                    <span class="org">Daffodil Institute of Information Technology (National University)</span>
-                </div>
-            </div>
-        </section>
+                    <div class="skillgroup">
 
+                        <div class="cat">
+                            Data
+                        </div>
+
+                        <div class="chiprow">
+
+                            <span class="chip">PostgreSQL</span>
+                            <span class="chip">MySQL</span>
+                            <span class="chip">MongoDB</span>
+                            <span class="chip">Redis</span>
+                            <span class="chip">Elasticsearch</span>
+                            <span class="chip">Kafka</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="skillgroup">
+
+                        <div class="cat">
+                            Infrastructure
+                        </div>
+
+                        <div class="chiprow">
+
+                            <span class="chip">Docker</span>
+                            <span class="chip">Kubernetes</span>
+                            <span class="chip">Jenkins</span>
+                            <span class="chip">GitHub Actions</span>
+                            <span class="chip">Linux</span>
+                            <span class="chip">Prometheus</span>
+                            <span class="chip">Grafana</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="skillgroup">
+
+                        <div class="cat">
+                            Frontend &amp; tooling
+                        </div>
+
+                        <div class="chiprow">
+
+                            <span class="chip">React.js</span>
+                            <span class="chip">Next.js</span>
+                            <span class="chip">Git</span>
+                            <span class="chip">Jira</span>
+                            <span class="chip">Asana</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =================================================
+             EDUCATION
+             ================================================= -->
+            <section id="education" class="edu reveal" aria-labelledby="education-heading">
+
+                <div class="head-row">
+
+                    <h2 id="education-heading">
+                        Education
+                    </h2>
+
+                    <span class="idx" aria-hidden="true">
+                        05
+                    </span>
+
+                </div>
+
+                <div class="timeline">
+
+                    <article class="job">
+
+                        <time class="when" datetime="2017">
+
+                            2017
+
+                        </time>
+
+                        <h3>
+                            BBA, Finance &amp; Banking
+                        </h3>
+
+                        <span class="org">
+                            Daffodil Institute of Information Technology
+                            (National University)
+                        </span>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+            <!-- =================================================
+             CONTACT
+             ================================================= -->
+            <section id="contact" class="contact reveal" aria-labelledby="contact-heading">
+
+                <div class="head-row">
+
+                    <h2 id="contact-heading">
+                        Contact
+                    </h2>
+
+                    <span class="idx" aria-hidden="true">
+                        06
+                    </span>
+
+                </div>
+
+                <p class="contact-lede">
+                    Open to Senior Backend Engineer and Tech Lead roles,
+                    along with interesting problems in distributed
+                    systems, microservices, and infrastructure. Email
+                    is the fastest way to reach me.
+                </p>
+
+                <a class="contact-cta" href="mailto:nazmul.islam.ridoy@gmail.com">
+                    nazmul.islam.ridoy@gmail.com
+                </a>
+
+                <div class="contact-grid">
+
+                    <a class="contact-item" href="https://linkedin.com/in/niridoy" target="_blank"
+                        rel="noopener noreferrer" aria-label="LinkedIn profile">
+
+                        <span class="contact-label">LinkedIn</span>
+                        <span class="contact-value">/in/niridoy</span>
+
+                    </a>
+
+                    <a class="contact-item" href="https://github.com/niridoy" target="_blank"
+                        rel="noopener noreferrer" aria-label="GitHub profile">
+
+                        <span class="contact-label">GitHub</span>
+                        <span class="contact-value">@niridoy</span>
+
+                    </a>
+
+                    <a class="contact-item" href="https://hackerrank.com/profile/niridoybd" target="_blank"
+                        rel="noopener noreferrer" aria-label="HackerRank profile">
+
+                        <span class="contact-label">HackerRank</span>
+                        <span class="contact-value">niridoybd</span>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- =====================================================
+         FOOTER
+         ===================================================== -->
         <footer class="reveal">
-            <span class="mono">© 2026 Md. Nazmul Islam</span>
-            <span class="mono">Dhaka, Bangladesh</span>
+
+            <span class="mono">
+                © 2026 Md. Nazmul Islam
+            </span>
+
+            <span class="mono">
+                Dhaka, Bangladesh
+            </span>
+
+            <a class="mono" href="#top" aria-label="Back to top">
+
+                Back to top
+
+            </a>
+
         </footer>
+
     </div>
 
-    <script src="theme.js"></script>
-    <script src="loader.js"></script>
-    <script src="particles.js"></script>
-    <script src="animations.js"></script>
+    <!-- JavaScript -->
+    <script src="theme.js" defer></script>
+    <script src="particles.js" defer></script>
+    <script src="animations.js" defer></script>
+
 </body>
 
 </html>

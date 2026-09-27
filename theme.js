@@ -1,33 +1,73 @@
-// Day/night mode toggle. The initial theme (if the person has picked one
-// before) is already applied by the inline script in <head> to avoid a
-// flash — this file just wires up the button and keeps things in sync.
+// Theme toggle with system-preference support and accessible state.
 (function () {
+  'use strict';
+
   var btn = document.getElementById('theme-toggle');
   if (!btn) return;
 
   var root = document.documentElement;
+  var mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
-  function systemPrefersDark() {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  function getSystemTheme() {
+    return mediaQuery.matches ? 'dark' : 'light';
   }
 
-  function currentTheme() {
-    var explicit = root.getAttribute('data-theme');
-    if (explicit === 'light' || explicit === 'dark') return explicit;
-    return systemPrefersDark() ? 'dark' : 'light';
+  function getCurrentTheme() {
+    var theme = root.getAttribute('data-theme');
+
+    if (theme === 'light' || theme === 'dark') {
+      return theme;
+    }
+
+    return getSystemTheme();
   }
 
-  function applyTheme(theme) {
+  function updateButton(theme) {
+    var isDark = theme === 'dark';
+
+    btn.setAttribute(
+      'aria-label',
+      isDark ? 'Switch to light mode' : 'Switch to dark mode'
+    );
+
+    btn.setAttribute('aria-pressed', String(isDark));
+  }
+
+  function setTheme(theme, persist) {
+    if (theme !== 'light' && theme !== 'dark') return;
+
     root.setAttribute('data-theme', theme);
-    try { localStorage.setItem('theme', theme); } catch (e) { }
-    btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    updateButton(theme);
+
+    if (persist) {
+      try {
+        localStorage.setItem('theme', theme);
+      } catch (error) {
+        // Storage may be unavailable in private/restricted environments.
+      }
+    }
   }
 
-  // Make sure the button's aria-label matches whatever theme ended up
-  // active on load (system preference or a saved choice).
-  btn.setAttribute('aria-label', currentTheme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  updateButton(getCurrentTheme());
 
   btn.addEventListener('click', function () {
-    applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+    var nextTheme = getCurrentTheme() === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme, true);
   });
+
+  // If the visitor has not manually selected a theme, follow
+  // future operating-system theme changes automatically.
+  function handleSystemThemeChange() {
+    var explicitTheme = root.getAttribute('data-theme');
+
+    if (explicitTheme !== 'light' && explicitTheme !== 'dark') {
+      updateButton(getSystemTheme());
+    }
+  }
+
+  if (typeof mediaQuery.addEventListener === 'function') {
+    mediaQuery.addEventListener('change', handleSystemThemeChange);
+  } else if (typeof mediaQuery.addListener === 'function') {
+    mediaQuery.addListener(handleSystemThemeChange);
+  }
 })();

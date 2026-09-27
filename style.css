@@ -1,0 +1,412 @@
+/* ===================================
+   PROFESSIONAL CV STYLESHEET
+   Clean, Content-Focused Design
+   =================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ===================================
+   GLOBAL STYLES
+   =================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #2d3748;
+  background: #f7fafc;
+  padding: 20px;
+}
+
+/* ===================================
+   CONTAINER
+   =================================== */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 40px 50px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 25px 20px;
+  }
+
+  body {
+    padding: 10px;
+  }
+}
+
+/* ===================================
+   HEADER
+   =================================== */
+.header {
+  text-align: center;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 2.0rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 4px;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.header h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #4a5568;
+  margin-bottom: 8px;
+}
+
+.contact {
+  font-size: 1.1rem;
+  margin-top: 12px;
+}
+
+.contact a {
+  color: #3182ce;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.contact a:hover {
+  border-bottom-color: #3182ce;
+}
+
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  margin-top: 12px;
+  text-align: left;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-info p {
+  font-size: 0.9rem;
+  margin: 0;
+  color: #4a5568;
+  line-height: 1.5;
+}
+
+.contact-info a {
+  color: #3182ce;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.contact-info a:hover {
+  border-bottom-color: #3182ce;
+}
+
+@media (max-width: 600px) {
+  .contact-info {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===================================
+   SECTIONS
+   =================================== */
+.section {
+  margin-bottom: 24px;
+}
+
+.section h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 12px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #3182ce;
+}
+
+.section p {
+  margin-bottom: 8px;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.section strong {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+/* ===================================
+   SKILLS
+   =================================== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 20px;
+}
+
+.skill-category {
+  margin-bottom: 0;
+}
+
+.skill-category h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 4px;
+}
+
+.skill-category p {
+  color: #4a5568;
+  line-height: 1.5;
+  margin-left: 0;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===================================
+   EXPERIENCE
+   =================================== */
+.job {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.job:last-child {
+  border-bottom: none;
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.job-header h4 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 4px;
+}
+
+.company {
+  font-size: 0.9rem;
+  color: #718096;
+  font-weight: 500;
+  margin: 0;
+}
+
+.duration {
+  font-size: 0.95rem;
+  color: #718096;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.job ul {
+  list-style: none;
+  padding: 0;
+}
+
+.job ul li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 8px;
+  color: #4a5568;
+  line-height: 1.7;
+}
+
+.job ul li::before {
+  content: '•';
+  position: absolute;
+  left: 8px;
+  color: #3182ce;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.job ul li strong {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+/* ===================================
+   PROJECTS
+   =================================== */
+.project {
+  margin-bottom: 20px;
+  padding: 16px;
+  background: #f7fafc;
+  border-radius: 6px;
+  border-left: 4px solid #3182ce;
+}
+
+.project h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 10px;
+}
+
+.project ul {
+  list-style: none;
+  padding: 0;
+}
+
+.project ul li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 8px;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.project ul li::before {
+  content: '→';
+  position: absolute;
+  left: 4px;
+  color: #3182ce;
+  font-weight: bold;
+}
+
+/* ===================================
+   EDUCATION
+   =================================== */
+.education {
+  padding: 16px;
+  background: #f7fafc;
+  border-radius: 6px;
+}
+
+.education h4 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 8px;
+}
+
+.education p {
+  color: #4a5568;
+  margin-bottom: 4px;
+}
+
+/* ===================================
+   FOOTER
+   =================================== */
+.footer {
+  margin-top: 35px;
+  padding-top: 16px;
+  border-top: 2px solid #e2e8f0;
+  text-align: center;
+}
+
+.footer p {
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+/* ===================================
+   PRINT STYLES
+   =================================== */
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+
+  .container {
+    box-shadow: none;
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .section {
+    page-break-inside: avoid;
+  }
+
+  .job {
+    page-break-inside: avoid;
+  }
+
+  .contact a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .contact a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.9em;
+    color: #666;
+  }
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .header h2 {
+    font-size: 1.25rem;
+  }
+
+  .section h3 {
+    font-size: 1.5rem;
+  }
+
+  .job-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .duration {
+    margin-top: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 1.75rem;
+  }
+
+  .header h2 {
+    font-size: 1.1rem;
+  }
+
+  .contact {
+    font-size: 1rem;
+  }
+
+  .section h3 {
+    font-size: 1.35rem;
+  }
+}

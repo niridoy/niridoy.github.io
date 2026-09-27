@@ -25,6 +25,22 @@
 
 <body>
 
+    <div id="page-loader" class="page-loader" aria-hidden="true">
+        <svg class="loader-bot" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <line class="bot-antenna" x1="60" y1="14" x2="60" y2="28" stroke="currentColor" stroke-width="3"
+                stroke-linecap="round" />
+            <circle class="bot-antenna-tip" cx="60" cy="10" r="5" fill="currentColor" />
+            <rect x="28" y="28" width="64" height="52" rx="16" fill="none" stroke="currentColor" stroke-width="3" />
+            <circle class="bot-eye" cx="47" cy="54" r="6" fill="currentColor" />
+            <circle class="bot-eye" cx="73" cy="54" r="6" fill="currentColor" />
+            <rect x="42" y="68" width="36" height="4" rx="2" fill="currentColor" />
+            <line x1="28" y1="46" x2="16" y2="46" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+            <line x1="92" y1="46" x2="104" y2="46" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+            <rect x="46" y="86" width="28" height="10" rx="4" fill="none" stroke="currentColor" stroke-width="3" />
+        </svg>
+        <span class="loader-label mono">loading…</span>
+    </div>
+
     <div class="wrap">
         <header class="reveal">
             <canvas class="particles-canvas" id="particles-canvas"></canvas>
@@ -238,6 +254,7 @@
         </footer>
     </div>
 
+    <script src="loader.js"></script>
     <script src="particles.js"></script>
     <script src="animations.js"></script>
 </body>
